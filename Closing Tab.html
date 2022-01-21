@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Close Tabs</title>
+    <!-- ----------------------CSS----------------------------- -->
+    <style>
+        * {
+            background-color: burlywood;
+        }
+
+        body>p{
+            font-size: large;
+        }
+
+        #tabs {
+            background-color: burlywood;
+            padding: 8px;
+            width: 40%;
+            border-style: ridge;
+            border-color: brown;
+            border-top-width: 5px;
+        }
+
+        div button {
+            background-color: blueviolet;
+            color: white;
+            border: 2px ridge royalblue;
+            padding: 8px 14px;
+            font-size: large;
+            font-weight: bold;
+            font-family: 'Times New Roman', Times, serif;
+            cursor: pointer;
+            transition: 0.3s linear;
+        }
+
+        div button:hover {
+            opacity: 0.7;
+        }
+
+        div button.active {
+            background-color: royalblue;
+        }
+
+        .tabContent {
+            background-color: rgba(222, 184, 135, 0.911);
+            color: rgba(0, 0, 0, 1);
+            width: 39.70%;
+            padding: 15px 10px;
+            border-style: ridge;
+            border-color: brown;
+            border-top-width: 0px;
+            border-bottom-width: 5px;
+            border-right-width: 3px;
+            border-left-width: 3px;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: large;
+            font-weight: 35px;
+            transition: 1s linear;
+        }
+
+        .tabClose {
+            float: right;
+            color: red;
+            font-size: xx-large;
+            font-weight: bolder;
+        }
+
+        .tabClose:hover {
+            color: tomato;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Tabs Close</h2>
+    <p>Click on the <span style="color: red; font-weight:bold">x</span> button on the right corner to close the current
+        Tab</p>
+
+    <div id="tabs">
+        <button class="tabLinks" onclick="openTabs(event,'India')" id="openDefault">India</button>
+        <button class="tabLinks" onclick="openTabs(event,'Londan')">Londan</button>
+        <button class="tabLinks" onclick="openTabs(event,'Paris')">Paris</button>
+        <button class="tabLinks" onclick="openTabs(event,'Tokyo')">Tokyo</button>
+    </div>
+
+    <div class="tabContent" id="India">
+        <span class="tabClose" onclick="this.parentElement.style.display='none'">&times;</span>
+        <h2>India</h2>
+        <p>Delhi is the capital of India.</p>
+    </div>
+    <div class="tabContent" id="Londan">
+        <span class="tabClose" onclick="this.parentElement.style.display='none'">&times;</span>
+        <h2>Londan</h2>
+        <p>Londan is the capital of the city England.</p>
+    </div>
+    <div class="tabContent" id="Paris">
+        <span class="tabClose" onclick="this.parentElement.style.display='none'">&times;</span>
+        <h2>Paris</h2>
+        <p>Paris is the capital of Franch.</p>
+    </div>
+    <div class="tabContent" id="Tokyo">
+        <span class="tabClose" onclick="this.parentElement.style.display='none'">&times;</span>
+        <h2>Tokyo</h2>
+        <p>Tokyo is the capital of Japan.</p>
+    </div>
+
+    <!-- ----------------------JavaScript----------------------------- -->
+    <script>
+        function openTabs(event, cityName) {
+            let tabLinks, tabContent, tabClose;
+
+            tabContent = document.getElementsByClassName("tabContent");
+            for (let i = 0; i < tabContent.length; i++) {
+                tabContent[i].style.display = "none";
+            }
+
+            tabLinks = document.getElementsByClassName("tabLinks");
+            for (let i = 0; i < tabLinks.length; i++) {
+                tabLinks[i].className = tabLinks[i].className.replace(" active","");
+            }
+            document.getElementById(cityName).style.display = "block";
+            event.currentTarget.className += " active";
+        }
+
+        document.getElementById('openDefault').click();
+    </script>
+</body>
+
+</html>
